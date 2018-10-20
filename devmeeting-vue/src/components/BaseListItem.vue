@@ -3,7 +3,7 @@
     <input
       name="product"
       v-model="newProduct.name"
-      v-validate="'required|min:3'"
+      v-validate="'required|digits:1'"
     >
     <button>Add</button>
     <div v-show="errors.has('product')">

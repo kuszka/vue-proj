@@ -3,7 +3,6 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <BaseList :products="products"/>
     <BaseListItem @add-product="onAddProduct"/>
-    <BaseList :products="sharedState.products"></BaseList>
   </div>
 </template>
 
@@ -20,16 +19,17 @@ export default {
     BaseListItem,
   },
   created() {
-    store.fetchProducts();
+    this.$store.fetchProducts();
   },
-  data() {
-    return {
-      sharedState: store.state
+  computed: {
+    products() {
+      return this.$store.state.products;
     }
   },
+  //5/ methods will now use dispatch function with name of action and payload
   methods: {
     onAddProduct(product) {
-      store.addProduct(product);
+      this.$store.dispatch('addProduct', product);
     }
   }
 };

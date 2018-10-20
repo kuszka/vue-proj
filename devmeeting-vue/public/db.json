@@ -1,0 +1,8 @@
+{
+    "product": [
+      { "id": 1, "title": "asd" },
+      { "id": 2, "title": "asdf" },
+      { "id": 3, "title": "asdff" },
+      { "id": 4, "title": "asdfff" }
+    ]
+  }
