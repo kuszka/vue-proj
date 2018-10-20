@@ -25,12 +25,15 @@
     <h2>My awesome list</h2>
     <ul>
       <!-- 2. Then, we're using built-in v-for directive to iterate over products -->
-      <li v-for="p in products">{{ p.name }}</li>
+      <li v-for="(p,index) in products">{{ p.name }}
+        <button v-on:click="removeThis(index)">X</button>
+      </li>
     </ul>
     <!-- 5. v-if can be helpful with conditional statements -->
     <p v-if="!products.length">No products!</p>
     <!-- 6. v-on adds an handler and :click is the name of the event, then goes the function to invoke -->
     <button v-on:click="removeLast()">Remove last item</button>
+    <br>
     <button v-on:click="addProduct()">Add random item</button>
     <input v-model="message" placeholder="Item to add">
   </div>
@@ -57,9 +60,12 @@
         removeLast() {
           this.products.pop();
         },
+        removeThis(index) {
+          this.products.splice(index, 1);
+        },
         addProduct() {
           this.products.push({
-              id: this.prevId+1,
+            id: parseInt(this.prevId)+1,
             name: this.message
           });
           this.prevId+=1;
