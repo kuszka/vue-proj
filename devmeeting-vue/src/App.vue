@@ -3,6 +3,7 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <BaseList :products="products"/>
     <BaseListItem @add-product="onAddProduct"/>
+    <BaseList :products="sharedState.products"></BaseList>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import BaseList from './components/BaseList';
 import BaseListItem from './components/BaseListItem';
 import axios from 'axios';
+import store from '../store';
 
 export default {
   name: 'app',
@@ -17,17 +19,17 @@ export default {
     BaseList,
     BaseListItem,
   },
-  async created(){
-    this.products = await axios.get('https://baconipsum.com/api/?type=all-meat').then(res => res.data);
+  created() {
+    store.fetchProducts();
   },
   data() {
     return {
-      products: []
+      sharedState: store.state
     }
   },
   methods: {
     onAddProduct(product) {
-      this.products.push(product);
+      store.addProduct(product);
     }
   }
 };
