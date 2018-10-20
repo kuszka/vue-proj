@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(p,index) in products" :key="p.id">{{ p.name }}
+      <li v-for="(p,index) in products" :key="p.index">{{ p }}
       <button v-on:click="removeThis(index)">X</button>
       </li>
     </ul>

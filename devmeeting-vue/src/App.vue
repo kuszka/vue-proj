@@ -9,22 +9,20 @@
 <script>
 import BaseList from './components/BaseList';
 import BaseListItem from './components/BaseListItem';
+import axios from 'axios';
 
 export default {
   name: 'app',
   components: {
     BaseList,
-    BaseListItem
+    BaseListItem,
+  },
+  async created(){
+    this.products = await axios.get('https://baconipsum.com/api/?type=all-meat').then(res => res.data);
   },
   data() {
     return {
-      products: [{
-        id: 0,
-        name: 'Coffee',
-      }, {
-        id: 1,
-        name: 'Pizza',
-      }]
+      products: []
     }
   },
   methods: {

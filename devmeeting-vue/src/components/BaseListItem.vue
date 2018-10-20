@@ -18,7 +18,7 @@
 //  (more on that later - hold your horses!)
 import uuid from 'uuid/v4';
 export default {
-  name: 'BaseListItem',
+  name: 'item',
   data() {
     return {
       newProduct: {
